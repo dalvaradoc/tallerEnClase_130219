@@ -1,0 +1,12 @@
+Sede tipo: Profesional
+Nombre: ciudad
+Direccion: direccion
+Telefono: 3165000
+Area: 100000.0
+Programas de Alta Calidad: 1
+Programas:
+Nombre: Nombre del programa
+Descripcion: la descripcion del programa
+No hay programas de educacion continuada.
+No hay programas de educacion tecnologica. 
+
