@@ -17,16 +17,16 @@ public class Tecnologica extends Sede{
         this.estudMatriculados = estudMatriculados;
     }
 
+    public void setEstudMatriculados(int estudMatriculados) {
+        this.estudMatriculados = estudMatriculados;
+    }
+
     @Override
     public String darInformacion() {
-        String listInfo = "";
-        listInfo += "Sede tipo: " + this.getClass().getSimpleName() + "\r\n";
-        listInfo += "Nombre: " + this.nombre + "\r\n";
-        listInfo += "Direccion: " + this.direccion + "\r\n";
-        listInfo += "Telefono: " + this.telefono + "\r\n";
-        listInfo += "Area: " + this.area + "\r\n";
-        listInfo += "Numero de estudiantes Matriculados: " + estudMatriculados + "\r\n";
-        listInfo += "Programas: " + "\r\n" + this.getProgramas();
+        String listInfo = this.getBasicInfo();
+        listInfo += estudMatriculados + ",";
+        listInfo += programas.size() + ",";
+        listInfo += this.getProgramas();
         return listInfo;
     }
 

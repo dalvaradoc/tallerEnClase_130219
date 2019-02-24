@@ -16,10 +16,10 @@ public class ProgramaFormacion {
     private String descripcion;
     private ArrayList<Estudiante> estudiantes;
 
-    public ProgramaFormacion(String nombre, String descripcion, ArrayList<Estudiante> estudiantes) {
+    public ProgramaFormacion(String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.estudiantes = estudiantes;
+        this.estudiantes = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -32,5 +32,13 @@ public class ProgramaFormacion {
 
     public ArrayList<Estudiante> getEstudiantes() {
         return estudiantes;
+    }
+    
+    public boolean addEstudiante (Estudiante est){
+        return estudiantes.add(est);
+    }
+    
+    public boolean deleteEstudiante (Estudiante est) {
+        return estudiantes.remove(est);
     }
 }

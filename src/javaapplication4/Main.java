@@ -7,12 +7,20 @@ package javaapplication4;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
+import menu.Menu;
 
 /**
  *
  * @author Estudiante
+ * El main crea un objeto tipo Universidad y se le asigna el nombre del archivo
+ * donde se guarda la informacion de las sedes. Luego se crea un objeto Menu que
+ * es el encargado de toda la interfaz para que el usuario pueda interactuar
+ * con el programa (mediante la consola).
+ * Nota: el menu no permite modificar informacion de estudiantes, ya que para
+ * guardar o cargar la informacion no son relevantes.
  */
 public class Main {
 
@@ -23,24 +31,12 @@ public class Main {
 
 
     */
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, IOException {
         
-        Universidad un = new Universidad();
+        Universidad un = new Universidad("savefile.txt");
         
-        Profesional sedeBog = new Profesional(1, "ciudad", "direccion", 3165000, 100000);
-        sedeBog.addPrograma("Nombre del programa", "la descripcion del programa", null);
-        
-        un.regSede(sedeBog);
-        
-        File savefile = new File("savefile.txt");
-        
-        PrintStream out = new PrintStream(savefile);
-        
-        System.out.println(un.getAllInfo());
-        
-        out.println(un.getAllInfo());
-        
-        
+        Menu menu = new Menu(un);
+
     }
     
 }

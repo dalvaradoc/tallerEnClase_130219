@@ -26,14 +26,30 @@ public abstract class Sede {
         this.area = area;
         this.programas = new ArrayList<>();
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setArea(double area) {
+        this.area = area;
+    }
     
-    public boolean addPrograma (String progName, String desc, ArrayList<Estudiante> estd) {
-        return programas.add(new ProgramaFormacion(progName, desc, estd));
+    public boolean addPrograma (String progName, String desc) {
+        return programas.add(new ProgramaFormacion(progName, desc));
     }
     
     public boolean deletePrograma (String progName) {
         for (ProgramaFormacion p : programas){
-            if (p.getNombre() == progName){
+            if (p.getNombre().equals(progName)){
                 return programas.remove(p);
             }
         }
@@ -43,10 +59,20 @@ public abstract class Sede {
     public String getProgramas () {
         String listProg = "";
         for (ProgramaFormacion p : programas){
-            listProg += "Nombre: " + p.getNombre() + "\r\n";
-            listProg += "Descripcion: " + p.getDescripcion() + "\r\n";
+            listProg += p.getNombre() + ",";
+            listProg += p.getDescripcion() + ",";
         }
         return listProg;
+    }
+    
+    public String getBasicInfo () {
+        String listInfo = "";
+        listInfo += this.getClass().getSimpleName() + ",";
+        listInfo += this.nombre + ",";
+        listInfo += this.direccion + ",";
+        listInfo += this.telefono + ",";
+        listInfo += this.area + ",";
+        return listInfo;
     }
     
     public abstract String darInformacion ();

@@ -25,9 +25,13 @@ public class Profesional extends Sede{
         this.progCont = new ArrayList<>();
         this.progTec = new ArrayList<>();
     }
+
+    public void setProgsAltaCalidad(int progsAltaCalidad) {
+        this.progsAltaCalidad = progsAltaCalidad;
+    }
     
-    public boolean addProgramaCont (String progName, String desc, ArrayList<Estudiante> estd) {
-        return progCont.add(new ProgramaFormacion(progName, desc, estd));
+    public boolean addProgramaCont (String progName, String desc) {
+        return progCont.add(new ProgramaFormacion(progName, desc));
     }
     
     public boolean deleteProgramaCont (String progName) {
@@ -39,8 +43,8 @@ public class Profesional extends Sede{
         return false;
     }
     
-    public boolean addProgramaTec (String progName, String desc, ArrayList<Estudiante> estd) {
-        return progTec.add(new ProgramaFormacion(progName, desc, estd));
+    public boolean addProgramaTec (String progName, String desc) {
+        return progTec.add(new ProgramaFormacion(progName, desc));
     }
     
     public boolean deleteProgramaTec (String progName) {
@@ -55,21 +59,21 @@ public class Profesional extends Sede{
     public String getOtherInfo () {
         String otherInfo = "";
         if (progCont.isEmpty()){
-            otherInfo += "No hay programas de educacion continuada.\r\n";
+            otherInfo += "0,";
         } else {
-            otherInfo += "Programas Educacion Continuada: \r\n";
+            otherInfo += progCont.size() + ",";
             for (ProgramaFormacion p : progCont){
-                otherInfo += "Nombre: " + p.getNombre() + "\r\n";
-                otherInfo += "Descripcion: " + p.getDescripcion() + "\r\n";
+                otherInfo += p.getNombre() + ",";
+                otherInfo += p.getDescripcion() + ",";
             }
         }
         if (progTec.isEmpty()){
-            otherInfo += "No hay programas de educacion tecnologica. \r\n";
+            otherInfo += "0,";
         } else {
-            otherInfo += "Programas Educacion Tecnologica: \r\n";
+            otherInfo += progTec.size() + ",";
             for (ProgramaFormacion p : progTec){
-                otherInfo += "Nombre: " + p.getNombre() + "\r\n";
-                otherInfo += "Descripcion: " + p.getDescripcion() + "\r\n";
+                otherInfo += p.getNombre() + ",";
+                otherInfo += p.getDescripcion() + ",";
             }
         }
         return otherInfo;
@@ -77,16 +81,19 @@ public class Profesional extends Sede{
 
     @Override
     public String darInformacion() {
-        String listInfo = "";
-        listInfo += "Sede tipo: " + this.getClass().getSimpleName() + "\r\n";
-        listInfo += "Nombre: " + this.nombre + "\r\n";
-        listInfo += "Direccion: " + this.direccion + "\r\n";
-        listInfo += "Telefono: " + this.telefono + "\r\n";
-        listInfo += "Area: " + this.area + "\r\n";
-        listInfo += "Programas de Alta Calidad: " + progsAltaCalidad + "\r\n";
-        listInfo += "Programas:" + "\r\n" + this.getProgramas();
+        String listInfo = this.getBasicInfo();
+        listInfo += this.progsAltaCalidad + ",";
+        listInfo += this.programas.size() + ",";
+        listInfo += this.getProgramas();
         listInfo += this.getOtherInfo();
         return listInfo;
     }
-   
+    
+    public ArrayList<ProgramaFormacion> getProgramasCont (){
+        return progCont;
+    }
+    
+    public ArrayList<ProgramaFormacion> getProgramasTec (){
+        return progTec;
+    }
 }

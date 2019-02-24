@@ -16,17 +16,17 @@ public class Continua extends Sede{
         super(nombre, direccion, telefono, area);
         this.cursoMasPopular = cursoMasPopular;
     }
+
+    public void setCursoMasPopular(String cursoMasPopular) {
+        this.cursoMasPopular = cursoMasPopular;
+    }
     
     @Override
     public String darInformacion() {
-        String listInfo = "";
-        listInfo += "Sede tipo: " + this.getClass().getSimpleName() + "\r\n";
-        listInfo += "Nombre: " + this.nombre + "\r\n";
-        listInfo += "Direccion: " + this.direccion + "\r\n";
-        listInfo += "Telefono: " + this.telefono + "\r\n";
-        listInfo += "Area: " + this.area + "\r\n";
-        listInfo += "Programa mas popular: " + cursoMasPopular + "\r\n";
-        listInfo += "Programas: " + this.getProgramas();
+        String listInfo = this.getBasicInfo();
+        listInfo += cursoMasPopular + ",";
+        listInfo += this.programas.size() + ",";
+        listInfo += this.getProgramas();
         return listInfo;
 //Si se quisiera mostrar el curso con mas estudiantes como el mas popular:
 //        ProgramaFormacion progPopular = this.programas.get(0);
@@ -35,7 +35,7 @@ public class Continua extends Sede{
 //                progPopular = p;
 //            }
 //        }
-//        listInfo += "Programa mas popular: " + progPopular.getNombre();
+//        listInfo += progPopular.getNombre();
     }
     
 }
